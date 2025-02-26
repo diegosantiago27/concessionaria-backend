@@ -8,7 +8,7 @@ const funcionarioRoutes = require('./routes/funcionarioRoutes');
 const pedidoRoutes = require('./routes/pedidoRoutes'); // <-- Importando as rotas de pedidos
 
 const app = express();
-const port = 5000;
+// const port = 5000;
 
 // Configuração do CORS e JSON
 app.use(cors());
@@ -24,6 +24,10 @@ app.use('/api/funcionarios', funcionarioRoutes);
 app.use('/api/pedidos', pedidoRoutes); // <-- Adicionando as rotas de pedidos
 
 // Inicialização do servidor
+
+const port = process.env.PORT || 5000;
+
 app.listen(port, () => {
     console.log(`🚀 Servidor rodando na porta ${port}`);
 });
+
