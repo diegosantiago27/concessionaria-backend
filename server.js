@@ -7,27 +7,15 @@ const clienteRoutes = require('./routes/clienteRoutes');
 const funcionarioRoutes = require('./routes/funcionarioRoutes');
 const pedidoRoutes = require('./routes/pedidoRoutes'); // <-- Importando as rotas de pedidos
 
-// const app = express();
-// const port = 5000;
+const app = express();
+const port = 5000;
 
 // Configuração do CORS e JSON
 app.use(cors());
-// app.use(express.json());
+app.use(express.json());
 
 // Configuração do Back4App
 parseConfig();
-
-const express = require("express");
-const app = express();
-
-app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send("API rodando na Vercel!");
-});
-
-module.exports = app;
-
 
 // Rotas organizadas
 app.use('/api/carros', carroRoutes);
