@@ -8,7 +8,7 @@ const funcionarioRoutes = require('./routes/funcionarioRoutes');
 const pedidoRoutes = require('./routes/pedidoRoutes'); // <-- Importando as rotas de pedidos
 
 const app = express();
-const port = process.env.PORT || 10000; // 🔹 Render atribui dinamicamente a porta
+const port = process.env.PORT || 5000; // 🔹 Render atribui dinamicamente a porta
 
 // Configuração do CORS e JSON
 app.use(cors());

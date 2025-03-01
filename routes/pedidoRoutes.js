@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const PedidoController = require('../controllers/pedidoController');
 
+// Rota de teste para verificar se `/api/pedidos` está ativo
+router.get('/', (req, res) => {
+    res.json({ mensagem: "API de pedidos funcionando!" });
+});
+
 // Definição das rotas para pedidos
 router.post('/cadastrar', PedidoController.cadastrarPedido);
 router.get('/listar', PedidoController.listarPedidos);
