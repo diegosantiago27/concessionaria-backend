@@ -3,9 +3,9 @@ const Parse = require('parse/node');
 // 🚀 Cadastrar um novo pedido
 const cadastrarPedido = async (req, res) => {
     try {
-        const { clienteId, carroId, status } = req.body;
+        const { clienteId, funcionarioId, carroId, status } = req.body;
 
-        if (!clienteId || !carroId || !status) {
+        if (!clienteId || !funcionarioId || !carroId || !status) {
             return res.status(400).json({ message: "Todos os campos são obrigatórios (clienteId, carroId, status)" });
         }
 
@@ -14,9 +14,10 @@ const cadastrarPedido = async (req, res) => {
 
         const Cliente = Parse.Object.extend("Cliente");
         const Carro = Parse.Object.extend("Carro");
-
+        const Funcionario = Parse.Object.extend("Funcionario");
         // Buscar cliente e carro no banco
         const cliente = await new Parse.Query(Cliente).get(clienteId);
+        const funcionario = await new Parse.Query(Funcionario).get(funcionarioId);
         const carro = await new Parse.Query(Carro).get(carroId);
 
         if (!cliente || !carro) {
@@ -24,6 +25,7 @@ const cadastrarPedido = async (req, res) => {
         }
 
         pedido.set('cliente', cliente);
+        pedido.set('funcionario', funcionario);
         pedido.set('carro', carro);
         pedido.set('status', status);
         pedido.set('data', new Date());
@@ -42,6 +44,7 @@ const listarPedidos = async (req, res) => {
         const Pedido = Parse.Object.extend("Pedido");
         const query = new Parse.Query(Pedido);
         query.include("cliente");
+        query.include("funcionario");
         query.include("carro");
 
         const pedidos = await query.find();
@@ -49,6 +52,7 @@ const listarPedidos = async (req, res) => {
         res.json(pedidos.map(pedido => ({
             id: pedido.id,
             cliente: pedido.get("cliente")?.get("nome") || "Desconhecido",
+            funcionario: pedido.get("funcionario")?.get("nome") || "Desconhecido",
             carro: pedido.get("carro")?.get("modelo") || "Desconhecido",
             status: pedido.get("status"),
             data: pedido.get("data"),
@@ -71,6 +75,7 @@ const buscarPedidoPorId = async (req, res) => {
         const Pedido = Parse.Object.extend("Pedido");
         const query = new Parse.Query(Pedido);
         query.include("cliente");
+        query.include("funcionario");
         query.include("carro");
 
         const pedido = await query.get(id);
@@ -82,6 +87,7 @@ const buscarPedidoPorId = async (req, res) => {
         res.json({
             id: pedido.id,
             cliente: pedido.get("cliente")?.get("nome") || "Desconhecido",
+            funcionario: pedido.get("funcionario")?.get("nome") || "Desconhecido",
             carro: pedido.get("carro")?.get("modelo") || "Desconhecido",
             status: pedido.get("status"),
             data: pedido.get("data"),
@@ -99,7 +105,7 @@ const buscarPedidoPorId = async (req, res) => {
 const atualizarPedido = async (req, res) => {
     try {
         const { id } = req.params;
-        const { carro, cliente, status } = req.body;
+        const { carro, cliente, funcionario, status } = req.body;
 
         const Pedido = Parse.Object.extend("Pedido");
         const query = new Parse.Query(Pedido);
@@ -118,6 +124,13 @@ const atualizarPedido = async (req, res) => {
             const clientePointer = new Cliente();
             clientePointer.id = cliente.objectId;
             pedidoParaAtualizar.set('cliente', clientePointer);
+        }
+
+        if (funcionario) {
+            const Funcionario = Parse.Object.extend("Funcionario");
+            const funcionarioPointer = new Funcionario();
+            funcionarioPointer.id = funcionario.objectId;
+            pedidoParaAtualizar.set('funcionario', funcionarioPointer);
         }
 
         if (status) pedidoParaAtualizar.set('status', status);
