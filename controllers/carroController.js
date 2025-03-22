@@ -1,6 +1,6 @@
 const Parse = require('parse/node');
 
-// 🚗 Cadastrar um novo carro
+
 const cadastrarCarro = async (req, res) => {
     try {
         const { modelo, ano, preco, status } = req.body;
@@ -20,7 +20,7 @@ const cadastrarCarro = async (req, res) => {
     }
 };
 
-// 🚗 Listar todos os carros
+
 const listarCarros = async (req, res) => {
     try {
         const Carro = Parse.Object.extend("Carro");
@@ -33,7 +33,7 @@ const listarCarros = async (req, res) => {
     }
 };
 
-// 🚗 Buscar um carro pelo ID
+
 const buscarCarroPorId = async (req, res) => {
     try {
         const { id } = req.params;
@@ -47,7 +47,7 @@ const buscarCarroPorId = async (req, res) => {
     }
 };
 
-// 🚗 Atualizar um carro pelo ID
+
 const atualizarCarro = async (req, res) => {
     try {
         const { id } = req.params;
@@ -70,7 +70,7 @@ const atualizarCarro = async (req, res) => {
     }
 };
 
-// 🚗 Excluir um carro pelo ID
+
 const excluirCarro = async (req, res) => {
     try {
         const { id } = req.params;
@@ -86,7 +86,7 @@ const excluirCarro = async (req, res) => {
     }
 };
 
-// Exportando todas as funções do controller
+
 module.exports = {
     cadastrarCarro,
     listarCarros,

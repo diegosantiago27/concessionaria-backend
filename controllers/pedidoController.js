@@ -1,6 +1,6 @@
 const Parse = require('parse/node');
 
-// 🚀 Cadastrar um novo pedido
+
 const cadastrarPedido = async (req, res) => {
     try {
         const { clienteId, funcionarioId, carroId, status } = req.body;
@@ -15,7 +15,7 @@ const cadastrarPedido = async (req, res) => {
         const Cliente = Parse.Object.extend("Cliente");
         const Carro = Parse.Object.extend("Carro");
         const Funcionario = Parse.Object.extend("Funcionario");
-        // Buscar cliente e carro no banco
+        
         const cliente = await new Parse.Query(Cliente).get(clienteId);
         const funcionario = await new Parse.Query(Funcionario).get(funcionarioId);
         const carro = await new Parse.Query(Carro).get(carroId);
@@ -38,7 +38,7 @@ const cadastrarPedido = async (req, res) => {
     }
 };
 
-// 🚀 Listar todos os pedidos
+
 const listarPedidos = async (req, res) => {
     try {
         const Pedido = Parse.Object.extend("Pedido");
@@ -63,7 +63,7 @@ const listarPedidos = async (req, res) => {
     }
 };
 
-// 🚀 Buscar um pedido pelo ID
+
 const buscarPedidoPorId = async (req, res) => {
     try {
         const { id } = req.params;
@@ -101,7 +101,7 @@ const buscarPedidoPorId = async (req, res) => {
     }
 };
 
-// 🚀 Atualizar um pedido pelo ID
+
 const atualizarPedido = async (req, res) => {
     try {
         const { id } = req.params;
@@ -143,7 +143,7 @@ const atualizarPedido = async (req, res) => {
     }
 };
 
-// 🚀 Excluir um pedido pelo ID
+
 const excluirPedido = async (req, res) => {
     try {
         const { id } = req.params;
@@ -164,7 +164,7 @@ const excluirPedido = async (req, res) => {
     }
 };
 
-// Exportando todas as funções do controller
+
 module.exports = {
     cadastrarPedido,
     listarPedidos,

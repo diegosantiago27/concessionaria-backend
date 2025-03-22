@@ -1,6 +1,6 @@
 const Parse = require('parse/node');
 
-// 🚀 Cadastrar um novo funcionário
+
 const cadastrarFuncionario = async (req, res) => {
     try {
         const { nome, cargo, salario } = req.body;
@@ -19,7 +19,7 @@ const cadastrarFuncionario = async (req, res) => {
     }
 };
 
-// 🚀 Listar todos os funcionários
+
 const listarFuncionarios = async (req, res) => {
     try {
         const Funcionario = Parse.Object.extend("Funcionario");
@@ -32,7 +32,7 @@ const listarFuncionarios = async (req, res) => {
     }
 };
 
-// 🚀 Buscar um funcionário pelo ID
+
 const buscarFuncionarioPorId = async (req, res) => {
     try {
         const { id } = req.params;
@@ -58,7 +58,7 @@ const buscarFuncionarioPorId = async (req, res) => {
     }
 };
 
-// 🚀 Atualizar um funcionário pelo ID
+
 const atualizarFuncionario = async (req, res) => {
     try {
         const { id } = req.params;
@@ -80,7 +80,7 @@ const atualizarFuncionario = async (req, res) => {
     }
 };
 
-// 🚀 Excluir um funcionário pelo ID
+
 const excluirFuncionario = async (req, res) => {
     try {
         const { id } = req.params;
@@ -96,7 +96,7 @@ const excluirFuncionario = async (req, res) => {
     }
 };
 
-// Exportando todas as funções do controller
+
 module.exports = {
     cadastrarFuncionario,
     listarFuncionarios,

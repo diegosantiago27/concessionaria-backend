@@ -1,6 +1,6 @@
 const Parse = require('parse/node');
 
-// 🚗 Cadastrar um novo cliente
+// Cadastrar um novo cliente
 const cadastrarCliente = async (req, res) => {
     try {
         const { nome, email, telefone } = req.body;
@@ -19,7 +19,7 @@ const cadastrarCliente = async (req, res) => {
     }
 };
 
-// 🚗 Listar todos os clientes
+// Listar todos os clientes
 const listarClientes = async (req, res) => {
     try {
         const Cliente = Parse.Object.extend("Cliente");
@@ -32,7 +32,7 @@ const listarClientes = async (req, res) => {
     }
 };
 
-// 🚗 Buscar um cliente pelo ID
+// Buscar um cliente pelo ID
 const buscarClientePorId = async (req, res) => {
     try {
         const { id } = req.params;
@@ -46,7 +46,7 @@ const buscarClientePorId = async (req, res) => {
     }
 };
 
-// 🚗 Atualizar um cliente pelo ID
+
 const atualizarCliente = async (req, res) => {
     try {
         const { id } = req.params;
@@ -67,7 +67,7 @@ const atualizarCliente = async (req, res) => {
     }
 };
 
-// 🚗 Excluir um cliente pelo ID
+
 const excluirCliente = async (req, res) => {
     try {
         const { id } = req.params;
@@ -83,7 +83,7 @@ const excluirCliente = async (req, res) => {
     }
 };
 
-// Exportando todas as funções do controller
+
 module.exports = {
     cadastrarCliente,
     listarClientes,
