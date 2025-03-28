@@ -87,4 +87,10 @@ const excluirCarro = async (req, res) => {
 };
 
 
-
+module.exports = {
+    cadastrarCarro,
+    listarCarros,
+    buscarCarroPorId,
+    atualizarCarro,
+    excluirCarro
+};
