@@ -84,10 +84,4 @@ const excluirCliente = async (req, res) => {
 };
 
 
-module.exports = {
-    cadastrarCliente,
-    listarClientes,
-    buscarClientePorId,
-    atualizarCliente,
-    excluirCliente
-};
+
